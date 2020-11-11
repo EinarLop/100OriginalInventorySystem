@@ -6,7 +6,7 @@ function Product(props) {
         <div className={styles.wrapper}>
             <img className={styles.image} src="https://cdn.shopify.com/s/files/1/0258/3088/3407/products/AR1737_01.jpg?v=1589472110" />
 
-            <h2 className={styles.productCode} >{props.productCode}AX2121</h2>
+            <h2 className={styles.productCode} >{props.productCode}</h2>
             <div className={styles.unitPriceWrapper}>
                 <p>Unit price:</p>
                 <p> {props.unitPrice} $1229 </p>
