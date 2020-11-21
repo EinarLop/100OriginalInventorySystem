@@ -11,6 +11,7 @@ class WatchList extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
             watches: [],
+            test: [],
             id_platform: '',
             name: ''
 
@@ -22,6 +23,13 @@ class WatchList extends Component {
         axios.get('http://localhost:3010/product')
             .then(response => {
                 this.setState({watches: response.data})
+            })
+            .catch((error) => {
+                console.log(error);
+            }) 
+        axios.get('https://api100originalinventorysystem.herokuapp.com')
+            .then(response => {
+                this.setState({test: response.data})
             })
             .catch((error) => {
                 console.log(error);
@@ -53,6 +61,7 @@ class WatchList extends Component {
     render() { 
                 return (
         <div>
+                <p>Welcome {this.state.test}</p>
                 {this.state.watches.map(watch => <Product productCode={watch.product_name} />)}
             
                 <input type="text" onChange={(e) => this.onChange(e, "id_platform")}/>
