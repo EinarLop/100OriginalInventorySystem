@@ -1,9 +1,11 @@
-import axios from 'axios';
 import React, { Component } from 'react';
-import Product from '../Inventory/product';
+import axios from 'axios';
 
-class WatchList extends Component {
-    constructor(props) {
+import Product from './Components/Product'
+
+
+class ShowProducts extends Component {
+constructor(props) {
         super(props);
 
 
@@ -20,7 +22,7 @@ class WatchList extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:3010/product')
+        axios.get('http://localhost:3010/local')
             .then(response => {
                 this.setState({watches: response.data})
             })
@@ -61,18 +63,20 @@ class WatchList extends Component {
     render() { 
                 return (
         <div>
-                <p>Welcome {this.state.test}</p>
-                {this.state.watches.map(watch => <Product productCode={watch.product_name} />)}
+              <p>Local: {this.state.watches}</p>
+                <p>Server {this.state.test}</p>
+                {/* {this.state.watches.map(watch => <Product productCode={watch.product_name} />)} */}
             
-                <input type="text" onChange={(e) => this.onChange(e, "id_platform")}/>
+                {/* <input type="text" onChange={(e) => this.onChange(e, "id_platform")}/>
                 <input type="text" onChange={(e) => this.onChange(e, "name")} />
-                <button onClick={this.onSubmit}>Submit</button>
+                <button onClick={this.onSubmit}>Submit</button> */}
         </div>
         
         
         );
 
         }
-    }
+
+}
  
-export default WatchList;
+export default ShowProducts;

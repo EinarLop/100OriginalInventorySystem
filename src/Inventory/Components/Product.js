@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from './productStyles.module.scss';
+import styles from './ProductStyles.module.scss';
 function Product(props) {
     return (
         <div className={styles.wrapper}>

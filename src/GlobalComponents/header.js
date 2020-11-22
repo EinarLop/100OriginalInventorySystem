@@ -2,7 +2,7 @@ import React from 'react'
 import { FiWatch } from 'react-icons/fi';
 
 
-import styles from './headerStyles.module.scss';
+import styles from './HeaderStyles.module.scss';
 
 function Header(props) {
     return (

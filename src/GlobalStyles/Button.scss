@@ -1,0 +1,12 @@
+@mixin Button {
+  border: 1px solid #118ab2;
+  border-radius: 20px;
+  background-color: #118ab2;
+  color: white;
+  width: 150px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
