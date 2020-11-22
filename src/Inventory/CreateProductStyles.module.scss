@@ -1,0 +1,19 @@
+@import "../GlobalStyles/Button.scss", "../GlobalStyles/Form.scss",
+  "../GlobalStyles/Input.scss";
+
+.Input {
+  @include Input;
+}
+.Form {
+  @include Form;
+}
+
+.Button {
+  @include Button;
+}
+
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

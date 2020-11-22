@@ -1,8 +1,9 @@
-import Header from "./GlobalComponents/header"
-import Product from "./Inventory/product"
-import SearchBar from "./GlobalComponents/searchBar"
+import Header from "./GlobalComponents/Header"
+import Product from "./Inventory/Components/Product"
+import SearchBar from "./GlobalComponents/SearchBar"
 import './App.css';
-import WatchList from "./GlobalComponents/watchList";
+import ShowProducts from "./Inventory/ShowProducts";
+import CreateProduct from "./Inventory/CreateProduct"
 
 function App() {
   return (
@@ -10,9 +11,9 @@ function App() {
     
       <Header color="yellow" />
 
+      <CreateProduct/>
+      <ShowProducts/>
       
-      <WatchList/>
-
       <SearchBar/>
       <Product />
       <Product />
