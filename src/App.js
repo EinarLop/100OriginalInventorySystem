@@ -1,4 +1,4 @@
-import Header from "./GlobalComponents/Header"
+//import Header from "./GlobalComponents/Header"
 import Product from "./Inventory/Components/Product"
 import SearchBar from "./GlobalComponents/SearchBar"
 import './App.css';
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
     
-      <Header color="yellow" />
+      {/* <Header color="yellow" /> */}
 
       <CreateProduct/>
       <ShowProducts/>
