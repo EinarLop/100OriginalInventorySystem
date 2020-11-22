@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;1,400&display=swap");
+
+.wrapper {
+  font-family: "Prompt", sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 50px;
+}
+
+input {
+  font-family: "Prompt", sans-serif;
+  border: 2px solid #393e41;
+  border-radius: 20px;
+  width: 50%;
+  height: 40px;
+  padding-left: 10px;
+  font-size: 15px;
+  &:focus {
+    outline: none;
+  }
+}
+
+label {
+  margin: 0px 0px 10px 9px;
+  font-size: 18px;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  // color: pink;
+  //margin-left: 10px;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
+
+//indian red
+// #E1E0E0
+// lightseagreen
