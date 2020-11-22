@@ -1,5 +1,5 @@
 @import "../GlobalStyles/Button.scss", "../GlobalStyles/Form.scss",
-  "../GlobalStyles/Input.scss";
+  "../GlobalStyles/Input.scss", "../GlobalStyles/Theme.scss";
 
 .Input {
   @include Input;
@@ -16,4 +16,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: $font;
 }
