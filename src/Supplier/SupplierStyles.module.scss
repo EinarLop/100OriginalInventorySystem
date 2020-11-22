@@ -1,0 +1,16 @@
+@import "../GlobalStyles/Button.scss", "../GlobalStyles/Form.scss",
+  "../GlobalStyles/Input.scss", "../GlobalStyles/Theme.scss";
+
+
+.wrapper {
+  margin: 50px;
+  border: 2px solid #118ab2;
+  border-radius: 10px;
+  font-family: "Prompt", sans-serif;
+  width: 275px;
+  display: block;
+  background-color: aquamarine;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
