@@ -19,9 +19,11 @@ ul {
   align-items: center;
 }
 
-li {
+.Link {
   width: auto;
   margin: 0px 25px;
+  text-decoration: none;
+  color: white;
 }
 
 .links {
