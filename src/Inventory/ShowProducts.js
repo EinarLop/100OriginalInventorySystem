@@ -32,6 +32,7 @@ componentDidMount(){
              productCode={product.product_code}
              stock={product.stock}
              unitPrice={product.unit_price}
+             id={product.id_product}
              />
             
             )   

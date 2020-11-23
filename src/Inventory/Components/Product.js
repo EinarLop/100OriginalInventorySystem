@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 import styles from './ProductStyles.module.scss';
 function Product(props) {
@@ -17,7 +18,9 @@ function Product(props) {
                 <p>{props.stock}</p>
             </div>
 
-            <button className={styles.button}>More details</button>
+            <Link to={"/updateproduct/" + props.id }>Ericc</Link>
+            
+            
 
 
         </div>
