@@ -32,8 +32,6 @@ function App() {
 
       </Switch>
     </Router>
- 
-    {/* <ShowSuppliers/> */}
 
     {/* <Footer/> */}
 
