@@ -9,12 +9,12 @@ function Product(props) {
             <h2 className={styles.productCode} >{props.productCode}</h2>
             <div className={styles.unitPriceWrapper}>
                 <p>Unit price:</p>
-                <p> {props.unitPrice} $1229 </p>
+                <p> {props.unitPrice}</p>
             </div>
 
             <div className={styles.stockWrapper}>
                 <p >Stock: </p>
-                <p>{props.stock}10</p>
+                <p>{props.stock}</p>
             </div>
 
             <button className={styles.button}>More details</button>

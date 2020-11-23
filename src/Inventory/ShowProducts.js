@@ -7,28 +7,45 @@ class ShowProducts extends Component {
 constructor(props) {
         super(props);
         this.state = {
+            products: []
         }
     }
    
-
-
-
+componentDidMount(){
+    axios.get("https://api100originalinventorysystem.herokuapp.com/product")
+    .then(response => { 
+    this.setState(
+        {
+            products: response.data
+        })
+    
+    })
+    
+};
 
     render() { 
         return (
             <div className={styles.Wrapper}>
-            <Product/>
-            <Product/>
-            <Product/>  
-            <Product/>  
-            <Product/>
-            <Product/> 
+            
+            {this.state.products.map((product) => (
+            <Product
+             productCode={product.product_code}
+             stock={product.stock}
+             unitPrice={product.unit_price}
+             />
+            
+            )   
+           )};
+
+
+          
             </div>
         
         
         );
 
     }
+    
 
 }
  
