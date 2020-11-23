@@ -45,11 +45,14 @@ class CreateProduct extends Component {
         }
           axios.post('https://api100originalinventorysystem.herokuapp.com/product', product)
             .then(res => console.log(res.data));
+
+          axios.post('http://localhost:3010/product', product)
+            .then(res => console.log(res.data));
+        
         }
        
-        //  axios.post('http://localhost:3010/product', product)
-        //     .then(res => console.log(res.data));
-        // }
+       
+  
 
       
   
