@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;1,400&display=swap");
+@import "../../GlobalStyles/Theme.scss";
 
 .wrapper {
+  background-color: white;
   margin: 50px;
-  border: 2px solid #118ab2;
+  border: 2px solid white;
   border-radius: 10px;
-  font-family: "Prompt", sans-serif;
+  font-family: $font;
   width: 275px;
   display: flex;
   justify-content: center;
@@ -27,15 +28,8 @@
   width: 200px;
 }
 
-.button {
-  border: 1px solid #118ab2;
-  border-radius: 20px;
-  background-color: #118ab2;
-  color: white;
-  width: 150px;
-  height: 40px;
-  margin-top: 10px;
-  margin-bottom: 25px;
-  font-family: "Prompt", sans-serif;
-  font-size: 15px;
+.Link {
+  text-decoration: none;
+  color: #ef6e3d;
+  font-size: 25px;
 }

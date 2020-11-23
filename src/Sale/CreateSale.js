@@ -1,10 +1,51 @@
 import React, { Component } from 'react';
 import styles from './CreateSaleStyles.module.scss';
+import axios from 'axios'
+
 
 class CreateSale extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.searchProduct= this.searchProduct.bind(this)
+
+        this.state = { 
+            products: [],
+            input_code: "",
+            input_quantity: "",
+         }
+    }
+
+    onChange(e, val){
+        this.setState({
+            [val]: e.target.value 
+        })
+    }
+
+    onSubmit(e){
+        e.preventDefault();
+
+        const product ={
+            product_code: this.state.product_code,
+            quantity: this.state.quantity,
+        }
+
+      
+    }
+
+    searchProduct(e){
+         e.preventDefault();
+
+           axios.get("http://localhost:3010/product/code/" + this.state.input_code).then(response => {
+            this.setState({
+                product: response.data
+            })
+               console.log(response.data)
+        })
+
+     
     }
 
     render() { 
@@ -21,15 +62,23 @@ class CreateSale extends Component {
                         </select>
                     </div>
                     <div className={styles.productWrapper}>
-                        <input className={styles.InputCS} placeholder="Product"></input>
-                        <input className={styles.InputCS} placeholder="Quantity"></input>
-                        <button className={styles.Button}>Add product</button>
+                        <input 
+                        className={styles.InputCS} 
+                        placeholder="Product"  
+                        onChange={(e) => this.onChange(e, "input_code")}></input>
+                        <input 
+                        className={styles.InputCS} 
+                        placeholder="Quantity"
+                        onChange={(e) => this.onChange(e, "input_quantity")}
+                        ></input>
+                        <button className={styles.Button} onClick={this.searchProduct}>Add product</button>
                     </div>
                     <div className={styles.saleWrapper}>
                         <p>CAS2020</p>
                         <p>1000</p>
                         <p>10,000</p>
                         <div>
+                           
                             <button className={styles.Button}>Delete</button>
                         </div>
                     </div>

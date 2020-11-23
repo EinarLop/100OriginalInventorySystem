@@ -18,7 +18,7 @@ function Product(props) {
                 <p>{props.stock}</p>
             </div>
 
-            <Link to={"/updateproduct/" + props.id }>Ericc</Link>
+            <Link className={styles.Link} to={"/updateproduct/" + props.id }>Details</Link>
             
             
 
