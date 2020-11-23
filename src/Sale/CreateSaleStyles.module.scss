@@ -1,0 +1,78 @@
+@import "../GlobalStyles/Button.scss", "../GlobalStyles/Form.scss",
+  "../GlobalStyles/Input.scss", "../GlobalStyles/Theme.scss";
+
+.Input {
+    @include Input;
+    margin: 0px 10px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #118ab2;
+    color: #118ab2;
+    
+}
+.List{
+    width: 200px;
+    font-size: 20px;   
+    background-color: #118ab2;
+    color: white;
+    border: none;
+    padding: 2px;
+    &:focus {
+        outline: none;
+    }
+}
+.Form {
+    @include Form;
+}
+
+.FormCS{
+    @include Form;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 30px;
+
+}
+
+.saleWrapper{
+    @include Form;
+    justify-content: space-between;
+    border-radius: 0;
+    
+    border-bottom: 1px solid black;
+    flex-direction: row;
+    display: inline-flex;
+    width: 800px;
+    padding: 1%;
+  }
+
+.productWrapper{
+    @include Form;
+    justify-content: space-between;
+    border-radius: 0;
+    margin: 10px;
+    border-bottom: 1px solid black;
+    flex-direction: row;
+    display: inline-flex;
+    width: 800px;
+    padding: 1%;
+}
+
+.InputCS{
+    @include Input;
+    margin: 0px 10px;
+    
+}
+.Wrapper{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: $font;  
+}
+.Button {
+    @include Button;
+    margin: 20px;
+    &:focus {
+        outline: none;
+    }
+}
