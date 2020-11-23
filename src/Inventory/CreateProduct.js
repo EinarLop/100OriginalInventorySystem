@@ -36,16 +36,20 @@ class CreateProduct extends Component {
 
         const product = {
             id_product: null,
-            productCode: this.state.productCode,
-            unitPrice: this.state.unitPrice,
-            unitCost: this.state.unitCost,
+            product_code: this.state.productCode,
+            unit_price: this.state.unitPrice,
+            unit_cost: this.state.unitCost,
             stock: this.state.stock,
-            url: this.state.url,
-            supplier: this.state.supplier
+            img_url: this.state.url,
+            id_supplier: this.state.supplier
         }
           axios.post('https://api100originalinventorysystem.herokuapp.com/product', product)
             .then(res => console.log(res.data));
         }
+       
+        //  axios.post('http://localhost:3010/product', product)
+        //     .then(res => console.log(res.data));
+        // }
 
       
   
