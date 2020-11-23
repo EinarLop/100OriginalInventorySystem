@@ -4,6 +4,7 @@ import SearchBar from "./GlobalComponents/SearchBar"
 import './App.css';
 import ShowProducts from "./Inventory/ShowProducts";
 import CreateProduct from "./Inventory/CreateProduct"
+import UpdateProduct from "./Inventory/UpdateProduct"
 import CreateSale from "./Sale/CreateSale";
 import ShowSales from "./Sale/ShowSales";
 import CreateSupplier from "./Supplier/CreateSupplier"
@@ -11,6 +12,7 @@ import ShowSuppliers from "./Supplier/ShowSupplier"
 import Footer from "./GlobalComponents/Footer";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 
 function App() {
   return (
@@ -26,13 +28,14 @@ function App() {
          <Route exact path="/showsales" component={ShowSales}/>
          <Route exact path="/createsupplier" component={CreateSupplier}/>
          <Route exact path="/showsuppliers" component={ShowSuppliers}/>
+        <Route exact path="/updateproduct/:id" component={UpdateProduct} />
 
       </Switch>
     </Router>
  
-    <ShowSuppliers/>
+    {/* <ShowSuppliers/> */}
 
-    <Footer/>
+    {/* <Footer/> */}
 
     </div>
   );
