@@ -17,7 +17,7 @@ function Product(props) {
                 <p>{props.stock}10</p>
             </div>
 
-            <button className={styles.button}>Register Sale</button>
+            <button className={styles.button}>More details</button>
 
 
         </div>

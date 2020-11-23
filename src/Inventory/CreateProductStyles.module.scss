@@ -10,6 +10,10 @@
 
 .Button {
   @include Button;
+  height: 50px;
+  width: 300px;
+  font-size: 20px;
+  margin-top: 25px;
 }
 
 .Wrapper {
@@ -17,4 +21,10 @@
   flex-direction: column;
   align-items: center;
   font-family: $font;
+  background-color: #e8e8e8;
+}
+
+.Title {
+  font-size: 30px;
+  font-weight: 500;
 }
