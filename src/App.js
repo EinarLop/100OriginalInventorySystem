@@ -8,16 +8,13 @@ import CreateSale from "./Sale/CreateSale";
 import ShowSales from "./Sale/ShowSales";
 import CreateSupplier from "./Supplier/CreateSupplier"
 import ShowSuppliers from "./Supplier/ShowSupplier"
-
+import Footer from "./GlobalComponents/Footer";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 
 function App() {
   return (
     <div className="App">
-
-  
    
     <Router>
         <Header color="yellow" />
@@ -33,12 +30,9 @@ function App() {
       </Switch>
     </Router>
  
+    <ShowSuppliers/>
 
-
-     
-      
-   
-
+    <Footer/>
 
     </div>
   );
