@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './ShowSalesStyles.module.scss';
 import axios from 'axios';
 import SalePreview from "./Components/SalePreview";
+import {Link} from 'react-router-dom';
 
 class ShowSales extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class ShowSales extends Component {
                     <p className={styles.title}>Platform</p>
                     <div>
                         <button className={styles.ButtonF}>More details</button>
+                         
                     </div>
                 </div>
 
@@ -46,6 +48,7 @@ class ShowSales extends Component {
                 quantity={sale.quantity}
                 total={sale.total}
                 id_platform = {sale.id_platform}
+                id={sale.id_sale}
               />
             </div>
           ))}        

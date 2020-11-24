@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../ShowSalesStyles.module.scss';
+import {Link} from 'react-router-dom';
 function SalePreview(props){
         return (
             <div className={styles.saleWrapper}>
@@ -8,7 +9,7 @@ function SalePreview(props){
                     <p>{props.total}</p>
                     <p>{props.id_platform}</p>
                     <div>
-                        <button className={styles.Button}>More details</button>
+                        <Link className={styles.Link} to={"/updatesale/" + props.id }>Details</Link>
                     </div>
             </div>
         );

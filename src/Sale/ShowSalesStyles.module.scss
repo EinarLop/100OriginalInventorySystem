@@ -43,8 +43,15 @@
   }
 }
 
+.Link {
+  color: #118ab2;
+  &:visited {
+    color: #118ab2;
+  }
+}
+
 .title {
-  margin: 0px 55px;
+  margin: 0px 70px;
   font-weight: bold;
 }
 
