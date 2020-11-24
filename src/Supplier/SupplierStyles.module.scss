@@ -3,14 +3,29 @@
 
 
 .wrapper {
-  margin: 50px;
+  margin: 40px;
   border: 2px solid #118ab2;
   border-radius: 10px;
   font-family: "Prompt", sans-serif;
-  width: 275px;
+  width: 200px;
   display: block;
-  background-color: aquamarine;
   justify-content: center;
   flex-direction: column;
+  padding: 10px;
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+
+.newSup {
+  margin: auto 10vw auto auto;
+}
+
+.suppliersWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

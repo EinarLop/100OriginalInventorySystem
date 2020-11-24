@@ -20,11 +20,7 @@ function Product(props) {
 
             <Link to={"/updateproduct/" + props.id }>Ericc</Link>
             
-            
-
-
         </div>
-
 
     );
 }

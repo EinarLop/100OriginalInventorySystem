@@ -5,8 +5,8 @@ function SearchBar (props){
     return(
         <div className={styles.wrapper}> 
             
-    <label htmlFor="search">Search</label>
-    <input type="text" id="search"placeholder="AX2121"/>
+        <label htmlFor="search">Search</label>
+        <input type="text" id="search"placeholder="AX2121"/>
 
         </div>
     );

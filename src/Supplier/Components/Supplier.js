@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import { Link } from "react-router-dom";
 import styles from '../SupplierStyles.module.scss';
 
 export default function Supplier(props) {
@@ -7,7 +7,7 @@ export default function Supplier(props) {
 
     return (
         <div className={styles.wrapper}>
-            <b>SupplierName</b>
+            <b>SUPPLIER</b>
             <h2 className={styles.supplierName}> {props.name} TodoModa </h2>
             <div className={styles.supplierInfo}>
                 <p>Contact:</p>
@@ -15,7 +15,7 @@ export default function Supplier(props) {
                 <p></p>
             </div>
 
-            <button className={styles.button}>Register Sale</button>
+            <Link to={"/updateproduct/" + props.id }>Edit</Link>
         </div>
     )
 }
