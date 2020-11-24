@@ -12,14 +12,14 @@ constructor(props) {
     }
    
 componentDidMount(){
-    axios.get("https://api100originalinventorysystem.herokuapp.com/product")
-    .then(response => { 
-    this.setState(
-        {
-            products: response.data
-        })
-    
+axios.get("https://api100originalinventorysystem.herokuapp.com/product")
+.then(response => { 
+this.setState(
+    {
+        products: response.data
     })
+
+})
     
 };
 

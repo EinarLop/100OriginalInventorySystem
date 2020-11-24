@@ -1,0 +1,14 @@
+@import "../../GlobalStyles/Theme.scss";
+
+.Wrapper {
+  font-family: $font;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  border: 1px solid black;
+}
+
+.ProductsWrapper {
+  display: flex;
+  justify-content: space-between;
+}
