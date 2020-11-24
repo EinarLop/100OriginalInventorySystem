@@ -61,6 +61,8 @@ class CreateSale extends Component {
     axios.post("http://localhost:3010/sale", sale)
       .then((response) => {
         this.createCrossRef(id);
+        let msg = <p style={{color: 'green'}}>Your sale was registered succesfully!</p>;
+        this.setState({error_msg: msg});
       })
       .catch((error) => {
         console.log("Try again later: " + error);
@@ -75,9 +77,7 @@ class CreateSale extends Component {
       }
     
       axios.post("http://localhost:3010/productsale", product_sale)
-      .then((response) => {
-        
-        
+      .then((response) => {        
         console.log(response);
       })
       .catch((error) => {
@@ -91,7 +91,7 @@ class CreateSale extends Component {
     e.preventDefault();
     let err = '';
     if (this.state.input_quantity==="" || !Number(this.state.input_quantity)){
-      console.log("Qty validation error");
+      console.log("Quantity validation error");
       err = <p style={{color: 'red'}}>Quantity must be a number</p>;
       this.setState({error_msg: err});
       return;
@@ -111,7 +111,7 @@ class CreateSale extends Component {
             unit_price: response.data[0].unit_price,
             total: response.data[0].unit_price * this.state.input_quantity,
             };
-    
+
             this.setState({
                 products: this.state.products.concat(newProduct),
             });
