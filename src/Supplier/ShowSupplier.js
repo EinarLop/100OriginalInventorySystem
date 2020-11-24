@@ -25,6 +25,7 @@ class ShowSupplier extends Component {
     render() {
         return (
             <div>
+                <p className={styles.Title}>Update product</p>
                 <SuppliersBar/>
                 <div className={styles.suppliersWrapper}>
                     <Supplier/>
