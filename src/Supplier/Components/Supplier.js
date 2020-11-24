@@ -7,7 +7,6 @@ export default function Supplier(props) {
 
     return (
         <div className={styles.wrapper}>
-            <b>SUPPLIER</b>
             <h2 className={styles.supplierName}> {props.name} TodoModa </h2>
             <div className={styles.supplierInfo}>
                 <p>Contact:</p>
