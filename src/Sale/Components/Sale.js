@@ -7,7 +7,7 @@ function Sale(props){
                 <p>{props.quantity}</p>
                 <p>10,000</p>
                 <div>
-                    <button className={styles.Button}>Delete</button>
+                    <button className={styles.Button} onClick={props.function}>Delete</button>
                 </div>
             </div>
         );
