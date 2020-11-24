@@ -64,8 +64,8 @@ class UpdateSale extends Component {
                     {this.state.products.map((product, counter) => (
                  
                         <ProductSalePreview
-                            productCode={product.product_code}
-                            unitPrice={product.unit_price}
+                            product_code={product.product_code}
+                            unit_price={product.unit_price}
                         />
                     
                         

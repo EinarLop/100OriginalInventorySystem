@@ -76,8 +76,8 @@ class CreateSale extends Component {
     
       axios.post("http://localhost:3010/productsale", product_sale)
       .then((response) => {
-        msg = <p style={{color: 'green'}}>Sale registered succesfully!</p>;
-        this.setState({error_msg: msg})
+        
+        
         console.log(response);
       })
       .catch((error) => {
