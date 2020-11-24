@@ -5,6 +5,11 @@
   @include Form;
 }
 
+.image{
+  height: 100px;
+  width: 100px;
+}
+
 .saleWrapper {
   @include Form;
   justify-content: space-between;
