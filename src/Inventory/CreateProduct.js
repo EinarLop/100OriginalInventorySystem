@@ -43,8 +43,7 @@ class CreateProduct extends Component {
             img_url: this.state.url,
             id_supplier: this.state.supplier
         }
-          axios.post('https://api100originalinventorysystem.herokuapp.com/product', product)
-            .then(res => console.log(res.data));
+         
 
           axios.post('http://localhost:3010/product', product)
             .then(res => console.log(res.data));

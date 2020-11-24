@@ -33,6 +33,7 @@ this.setState(
                 stock={product.stock}
                 unitPrice={product.unit_price}
                 id={product.id_product}
+                url={product.img_url}
              />
             
             )   

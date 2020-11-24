@@ -30,6 +30,7 @@ class CreateSale extends Component {
   onChange(e, val) {
     this.setState({
       [val]: e.target.value,
+      error_msg: ""
     });
   }
 
@@ -37,7 +38,7 @@ class CreateSale extends Component {
     e.preventDefault();
     // validar inputs de state.products
     let msg = '';
-    if (this.state.input_date==='' || !Date(this.state.input_date)){
+    if (!this.isDate(this.state.input_date)){
       console.log("Date validation error");
       msg = <p style={{color: 'red'}}>Date format must be YYYY-MM-DD</p>;
       this.setState({error_msg: msg});
@@ -45,14 +46,13 @@ class CreateSale extends Component {
     }
 
     const id = uuidv4();
-    const today = new Date().toISOString().slice(0, 10);    // 2020-11-23
     let productTotal = 0;
     
     this.state.products.forEach(product => productTotal += product.total);
 
     const sale = {
       id_sale: id,
-      date: today,
+      date: this.state.input_date,
       total: productTotal,
       id_platform: this.state.input_platform
     };
@@ -73,12 +73,13 @@ class CreateSale extends Component {
     this.state.products.forEach(product => {
      const product_sale = {
         id_product: product.id_product,
-        id_sale: id
+        id_sale: id,
+        quantity: product.quantity
       }
     
       axios.post("http://localhost:3010/productsale", product_sale)
       .then((response) => {        
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log("Try again later: " + error);
@@ -115,7 +116,7 @@ class CreateSale extends Component {
             this.setState({
                 products: this.state.products.concat(newProduct),
             });
-            console.log(this.state.products);
+           
         }
 
         }).catch((error) => {
@@ -134,9 +135,6 @@ class CreateSale extends Component {
       this.setState({ products: array });
     }
   }
-  /*this.setState({
-      devoirs: [...this.state.devoirs.filter(item=> item.id !== id)]
-    }) */
 
 
   render() {
@@ -192,6 +190,17 @@ class CreateSale extends Component {
       </div>
     );
   }
+
+  // Utility function for Date Input Validation
+  isDate = (dateString) => {
+    var regEx = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateString.match(regEx)) return false;  // Invalid format
+    var d = new Date(dateString);
+    var dNum = d.getTime();
+    if (!dNum && dNum !==0) return false;   // NaN value
+    return d.toISOString().slice(0,10) === dateString;
+  }
+
 }
 
 export default CreateSale;
