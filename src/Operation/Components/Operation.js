@@ -17,7 +17,7 @@ class Operation extends Component {
                  </div>
 
                  <div className={styles.ProductsWrapper}>
-                     <p className={styles.NumProducts}>10</p>
+                     <p className={styles.NumProducts}>10---</p>
                      <p className={styles.Total}>100</p>
                      
                  </div>
