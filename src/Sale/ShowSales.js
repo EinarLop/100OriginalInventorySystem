@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
 import styles from './ShowSalesStyles.module.scss';
+import axios from 'axios';
+import SalePreview from "./Components/SalePreview";
 
 class ShowSales extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            sales: []
+         }
     }
+
+    componentDidMount(){
+    axios.get("http://localhost:3010/sale")
+    .then(response => { 
+    this.setState(
+        {
+            sales: response.data
+        })
+        console.log(response.data)
+    })
+        
+    };
 
     render() { 
         return (
@@ -15,47 +31,26 @@ class ShowSales extends Component {
                 </div>
                 <div className={styles.saleWrapper}>
                     <p className={styles.title}>Date</p>
-                    <p className={styles.title}>Quantity</p>
                     <p className={styles.title}>Total</p>
-                    <p className={styles.title}>ID platform</p>
+                    <p className={styles.title}>Platform</p>
                     <div>
                         <button className={styles.ButtonF}>More details</button>
                     </div>
                 </div>
-                <div className={styles.saleWrapper}>
-                    
-                    <p>22/11/2020</p>
-                    <p>1000</p>
-                    <p>10,000</p>
-                    <p>P001</p>
-                    <div>
-                        <button className={styles.Button}>More details</button>
-                    </div>
-                </div>
-                <div className={styles.saleWrapper}>
-                    
-                    <p>22/11/2020</p>
-                    <p>1000</p>
-                    <p>10,000</p>
-                    <p>P001</p>
-                    <div>
-                        <button className={styles.Button}>More details</button>
-                    </div>
-                </div>
-                <div className={styles.saleWrapper}>
-                    
-                    <p>22/11/2020</p>
-                    <p>1000</p>
-                    <p>10,000</p>
-                    <p>P001</p>
-                    <div>
-                        <button className={styles.Button}>More details</button>
-                    </div>
-                </div>
-                
 
+             {this.state.sales.map((sale, counter) => (
+                 
+            <div key={counter}>
+              <SalePreview
+                date={sale.date}
+                quantity={sale.quantity}
+                total={sale.total}
+                id_platform = {sale.id_platform}
+              />
             </div>
-            );
+          ))}        
+            </div>
+        );
 
     }
 }

@@ -5,7 +5,7 @@ function Sale(props){
             <div className={styles.saleWrapper}>
                 <p>{props.product_code}</p>
                 <p>{props.quantity}</p>
-                <p>10,000</p>
+                <p>{props.unit_price}</p>
                 <div>
                     <button className={styles.Button} onClick={props.function}>Delete</button>
                 </div>

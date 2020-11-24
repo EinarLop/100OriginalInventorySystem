@@ -10,16 +10,18 @@ class CreateSale extends Component {
     super(props);
     this.state = {};
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.searchProduct = this.searchProduct.bind(this);
+  
+    this.searchProduct = this.addProduct.bind(this);
     this.createSale = this.createSale.bind(this);
     this.deleteProduct= this.deleteProduct.bind(this);
+    this.createCrossRef= this.createCrossRef.bind(this);
 
     this.state = {
       products: [],
       input_code: "",
       input_quantity: "",
       input_platform: "Amazon",
+      id_product:""
     };
   }
 
@@ -30,21 +32,13 @@ class CreateSale extends Component {
     console.log(e.target.value);
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    const product = {
-      product_code: this.state.product_code,
-      quantity: this.state.quantity,
-    };
-  }
-
   createSale(e) {
     e.preventDefault();
     // validar inputs de state.products
 
     const id = uuidv4();
-    const today = new Date().toISOString().slice(0, 10);
-    const productTotal = 0;
+    const today = new Date().toISOString().slice(0, 10);    // 2020-11-23
+    let productTotal = 0;
     
     this.state.products.forEach(product => productTotal += product.total);
 
@@ -52,27 +46,51 @@ class CreateSale extends Component {
       id_sale: id,
       date: today,
       total: productTotal,
-      id_platform: this.state.input_platform,
+      id_platform: this.state.input_platform
     };
+    console.log(sale)
 
     axios.post("http://localhost:3010/sale", sale)
       .then((response) => {
-        console.log(response);
+        this.createCrossRef(id);
+        console.log("form /sale");
       })
       .catch((error) => {
         console.log("Try again later: " + error);
       });
   }
 
-  searchProduct(e) {
+  createCrossRef(id){
+    this.state.products.forEach(product => {
+     const product_sale = {
+        id_product: product.id_product,
+        id_sale: id
+      }
+    
+      axios.post("http://localhost:3010/createproductsale", product_sale)
+      .then((response) => {
+        // create cross references
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("Try again later: " + error);
+      });
+
+
+    }      
+      );
+  }
+
+  addProduct(e) {
     e.preventDefault();
 
-    axios
-      .get("http://localhost:3010/product/code/" + this.state.input_code)
+    axios.get("http://localhost:3010/product/code/" + this.state.input_code)
       .then((response) => {
             const newProduct = {
+            id_product: response.data[0].id_product,
             product_code: this.state.input_code,
             quantity: this.state.input_quantity,
+            unit_price: response.data[0].unit_price,
             total: response.data[0].unit_price * this.state.input_quantity,
             };
 
@@ -129,7 +147,7 @@ class CreateSale extends Component {
               placeholder="Quantity"
               onChange={(e) => this.onChange(e, "input_quantity")}
             ></input>
-            <button className={styles.Button} onClick={this.searchProduct}>
+            <button className={styles.Button} onClick={(e) => this.addProduct(e)}>
               Add product
             </button>
           </div>
@@ -137,6 +155,7 @@ class CreateSale extends Component {
             <div key={counter}>
               <Sale
                 product_code={product.product_code}
+                unit_price={product.unit_price}
                 quantity={product.quantity}
                 total={product.total}
                 function={() => this.deleteProduct(product)}
