@@ -18,10 +18,12 @@ class CreateSale extends Component {
 
     this.state = {
       products: [],
+      input_date: new Date().toISOString().slice(0, 10),
       input_code: "",
       input_quantity: "",
       input_platform: "Amazon",
-      id_product:""
+      id_product:"",
+      error_msg:"",
     };
   }
 
@@ -29,12 +31,18 @@ class CreateSale extends Component {
     this.setState({
       [val]: e.target.value,
     });
-    console.log(e.target.value);
   }
 
   createSale(e) {
     e.preventDefault();
     // validar inputs de state.products
+    let msg = '';
+    if (this.state.input_date==='' || !Date(this.state.input_date)){
+      console.log("Date validation error");
+      msg = <p style={{color: 'red'}}>Date format must be YYYY-MM-DD</p>;
+      this.setState({error_msg: msg});
+      return;
+    }
 
     const id = uuidv4();
     const today = new Date().toISOString().slice(0, 10);    // 2020-11-23
@@ -53,7 +61,6 @@ class CreateSale extends Component {
     axios.post("http://localhost:3010/sale", sale)
       .then((response) => {
         this.createCrossRef(id);
-        console.log("form /sale");
       })
       .catch((error) => {
         console.log("Try again later: " + error);
@@ -67,41 +74,52 @@ class CreateSale extends Component {
         id_sale: id
       }
     
-      axios.post("http://localhost:3010/createproductsale", product_sale)
+      axios.post("http://localhost:3010/productsale", product_sale)
       .then((response) => {
-        // create cross references
+        msg = <p style={{color: 'green'}}>Sale registered succesfully!</p>;
+        this.setState({error_msg: msg})
         console.log(response);
       })
       .catch((error) => {
         console.log("Try again later: " + error);
       });
-
-
     }      
       );
   }
 
   addProduct(e) {
     e.preventDefault();
+    let err = '';
+    if (this.state.input_quantity==="" || !Number(this.state.input_quantity)){
+      console.log("Qty validation error");
+      err = <p style={{color: 'red'}}>Quantity must be a number</p>;
+      this.setState({error_msg: err});
+      return;
+    }    
+    this.setState({error_msg: err});
 
     axios.get("http://localhost:3010/product/code/" + this.state.input_code)
       .then((response) => {
-            const newProduct = {
+        if (response.data === "No results"){
+          err = <p style={{color: 'red'}}>No Product Code found.</p>;
+          this.setState({error_msg: err});
+        } else{
+          const newProduct = {
             id_product: response.data[0].id_product,
             product_code: this.state.input_code,
             quantity: this.state.input_quantity,
             unit_price: response.data[0].unit_price,
             total: response.data[0].unit_price * this.state.input_quantity,
             };
+    
+            this.setState({
+                products: this.state.products.concat(newProduct),
+            });
+            console.log(this.state.products);
+        }
 
-        this.setState({
-            products: this.state.products.concat(newProduct),
-        });
-        console.log(this.state.products);
-        
         }).catch((error) => {
         if (error) {
-          console.log(error);
           throw error;
         } 
       });
@@ -127,7 +145,9 @@ class CreateSale extends Component {
         <div className={styles.Form}>
           <h1>Create sale</h1>
           <div className={styles.FormCS}>
-            <input className={styles.Input} placeholder="Date of sale"></input>
+            <input className={styles.Input} placeholder="Date of sale"
+            onChange={(e) => this.onChange(e, "input_date")}
+            value={this.state.input_date}/>
             <select
               className={styles.List}
               onChange={(e) => this.onChange(e, "input_platform")}>
@@ -162,6 +182,8 @@ class CreateSale extends Component {
               />
             </div>
           ))}
+
+          {this.state.error_msg}
 
           <button className={styles.Button} onClick={this.createSale}>
             Create sale

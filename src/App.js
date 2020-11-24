@@ -10,6 +10,7 @@ import ShowSales from "./Sale/ShowSales";
 import ShowOperations from "./Operation/ShowOperations"
 import CreateSupplier from "./Supplier/CreateSupplier"
 import ShowSuppliers from "./Supplier/ShowSupplier"
+import UpdateSale from "./Sale/UpdateSale"
 import Footer from "./GlobalComponents/Footer";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -27,6 +28,8 @@ function App() {
           <Route exact path="/showproducts" component={ShowProducts}/>
           <Route exact path="/createsale" component={CreateSale}/>
           <Route exact path="/showsales" component={ShowSales}/>
+          <Route exact path="/updatesale/:id" component={UpdateSale}/>
+
           <Route exact path="/createsupplier" component={CreateSupplier}/>
           <Route exact path="/showsuppliers" component={ShowSuppliers}/>
           <Route exact path="/updateproduct/:id" component={UpdateProduct} />
