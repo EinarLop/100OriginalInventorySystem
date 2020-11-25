@@ -9,50 +9,56 @@ class ShowSales extends Component {
         super(props);
         this.state = { 
             sales: []
-         }
+        }
     }
 
     componentDidMount(){
     axios.get("http://localhost:3010/sale")
     .then(response => { 
-    this.setState(
-        {
-            sales: response.data
-        })
-        console.log(response.data)
-    })
+    if (response.data === "No results"){
+        console.log("No sales in Database")
         
+    }else {
+        this.setState(
+            {
+                sales: response.data
+            })
+    }
+    console.log(response.data)
+    }).catch(error => {
+        console.log("GET ERROR:" + error);
+    })
     };
 
     render() { 
         return (
-            <div className={styles.Wrapper}>
-                <div className={styles.Form}>
-                    <h1> Show sales</h1>
-                </div>
-                <div className={styles.saleWrapper}>
-                    <p className={styles.title}>Date</p>
-                    <p className={styles.title}>Total</p>
-                    <p className={styles.title}>Platform</p>
-                    <div>
-                        <button className={styles.ButtonF}>More details</button>
-                         
-                    </div>
-                </div>
+          <div className={styles.Wrapper}>
+            <div className={styles.Form}>
+              <h1> Show sales</h1>
+            </div>
+         
 
-             {this.state.sales.map((sale, counter) => (
-                 
-            <div key={counter}>
-              <SalePreview
-                date={sale.date}
-                quantity={sale.quantity}
-                total={sale.total}
-                id_platform = {sale.id_platform}
-                id={sale.id_sale}
-              />
+            <div className={styles.Menu}>
+              <div className={styles.Container}>Date</div>
+              <div className={styles.Container}>Total</div>
+              <div className={styles.Container}>Platform</div>
+              <div className={styles.Container}></div>
             </div>
-          ))}        
-            </div>
+            {
+            this.state.sales.length ? (this.state.sales.map((sale, counter) => (
+                <div key={counter}>
+                  <SalePreview
+                    date={sale.date}
+                    quantity={sale.quantity}
+                    total={sale.total}
+                    id_platform={sale.id_platform}
+                    id={sale.id_sale}
+                  />
+                </div>
+              ))) : <div>No sales</div>
+    }
+            
+          </div>
         );
 
     }

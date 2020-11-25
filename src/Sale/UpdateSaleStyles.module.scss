@@ -8,7 +8,32 @@
     @include Form;
 }
 
+.dataWapper{
+    @include Form;
+    justify-content: space-between;
+    border-radius: 0;
 
+    border-bottom: 1px solid black;
+    flex-direction: row;
+    display: inline-flex;
+    width: 800px;
+    padding: 1%;
+}
+.titlesWrapper{
+    @include Form;
+    justify-content: space-between;
+    border-radius: 0;
+    font-weight: 100px;
+    border-bottom: 1px solid black;
+    flex-direction: row;
+    display: inline-flex;
+    width: 800px;
+    padding: 1%;
+    font-weight: bold;
+}
+.title{
+    margin-left: 50px;
+}
 .Wrapper{
     margin: 20px;
     display: flex;
@@ -22,4 +47,22 @@
     &:focus {
         outline: none;
     }
+}
+
+
+.Menu{
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    border-bottom: 2px solid black;
+}
+
+.Container{
+    width:200px;
+    font-size: 25px;
+    font-weight: 500;
+    display:flex;
+    justify-content: center;
+    
+
 }
