@@ -69,11 +69,11 @@ class CreateSale extends Component {
       });
   }
 
-  createCrossRef(id){
+  createCrossRef(idSale){
     this.state.products.forEach(product => {
      const product_sale = {
         id_product: product.id_product,
-        id_sale: id,
+        id_sale: idSale,
         quantity: product.quantity
       }
     
@@ -84,8 +84,14 @@ class CreateSale extends Component {
       .catch((error) => {
         console.log("Try again later: " + error);
       });
-    }      
-      );
+
+      // hacer el update de stock por cada id_product
+
+    });
+  }
+
+  updateStock(idProduct){
+
   }
 
   addProduct(e) {
@@ -105,18 +111,22 @@ class CreateSale extends Component {
           err = <p style={{color: 'red'}}>No Product Code found.</p>;
           this.setState({error_msg: err});
         } else{
-          const newProduct = {
-            id_product: response.data[0].id_product,
-            product_code: this.state.input_code,
-            quantity: this.state.input_quantity,
-            unit_price: response.data[0].unit_price,
-            total: response.data[0].unit_price * this.state.input_quantity,
-            };
-
-            this.setState({
-                products: this.state.products.concat(newProduct),
-            });
-           
+          if (this.state.input_quantity > response.data[0].stock){
+          err = <p style={{color: 'red'}}>Not enough stock for product {response.data[0].product_code}</p>;
+          this.setState({error_msg: err});
+          } else {
+            const newProduct = {
+              id_product: response.data[0].id_product,
+              product_code: this.state.input_code,
+              quantity: this.state.input_quantity,
+              unit_price: response.data[0].unit_price,
+              total: response.data[0].unit_price * this.state.input_quantity,
+              };
+  
+              this.setState({
+                  products: this.state.products.concat(newProduct),
+              });  
+          }
         }
 
         }).catch((error) => {

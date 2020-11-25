@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import styles from '../CreateSaleStyles.module.scss';
+import styles from "./ProductSalePreviewStyles.module.scss";
 function ProductSalePreview(props){
+    console.log(props.img_url);
         return (
-            <div className={styles.saleWrapper}>
-                <img className={styles.image} alt="Watch"src="https://cdn.shopify.com/s/files/1/0258/3088/3407/products/AR1737_01.jpg?v=1589472110" />
-                <p>{props.product_code}</p>
-                <p>10</p>
-                <p>{props.unit_price}</p>
+          <div className={styles.Wrapper}>
+            <div className={styles.Container}>
+              <div className={styles.ContainerImage}>
+                <img
+                  width="50px"
+                  height="85x"
+                  className={styles.image}
+                  src={props.img_url}
+                />
+              </div>
             </div>
+            <div className={styles.Container}>{props.product_code}</div>
+            <div className={styles.Container}>{props.quantity}</div>
+            <div className={styles.Container}>{props.unit_price}</div>
+          </div>
         );
 }
 

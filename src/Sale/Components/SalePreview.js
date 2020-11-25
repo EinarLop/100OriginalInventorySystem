@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import styles from '../ShowSalesStyles.module.scss';
+import styles from './SalePreviewStyles.module.scss';
 import {Link} from 'react-router-dom';
 function SalePreview(props){
         return (
-            <div className={styles.saleWrapper}>
-
-                    <p>{props.date.slice(0,10)}</p>
-                    <p>{props.total}</p>
-                    <p>{props.id_platform}</p>
-                    <div>
-                        <Link className={styles.Link} to={"/updatesale/" + props.id }>Details</Link>
-                    </div>
+          <div className={styles.Wrapper}>
+            <div className={styles.Container}>{props.date.slice(0, 10)}</div>
+            <div className={styles.Container}>{props.total}</div>
+            <div className={styles.Container}>{props.id_platform}</div>
+            <div className={styles.Container}>
+              <Link className={styles.Link} to={"/updatesale/" + props.id}>
+                Details
+              </Link>
             </div>
+          </div>
         );
 }
 

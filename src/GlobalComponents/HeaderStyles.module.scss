@@ -1,7 +1,9 @@
+@import "../GlobalStyles/Theme.scss";
+
 .wrapper {
   font-family: "Prompt", sans-serif;
   @import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;1,400&display=swap");
-  background-color: #ef6e3d;
+  background-color: $header;
   color: white;
   height: 100px;
   display: flex;
