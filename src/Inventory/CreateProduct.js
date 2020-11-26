@@ -50,7 +50,7 @@ class CreateProduct extends Component {
         }
          
 
-          axios.post('http://localhost:3010/product', product)
+          axios.post('http://localhost:3010/product' ,product)
             .then(res => {
                 let msg = <p style={{color: 'green'}}>Product was succesfully registered!</p>
                 this.setState({

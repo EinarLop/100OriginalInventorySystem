@@ -8,6 +8,7 @@ class UpdateProduct extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
         this.fillValues= this.fillValues.bind(this)
 
         this.state = { 
@@ -83,6 +84,17 @@ class UpdateProduct extends Component {
            
         }
        
+    onDelete(){
+        axios.delete("http://localhost:3010/product/" + this.state.id_product)
+        .then(response => {
+          let msg = <p style={{color: 'green'}}>Product deleted succesfully!</p>;      
+          
+          this.setState({
+                  message: msg
+                })
+                  setTimeout(() => this.setState({ redirect: true }), 2000);
+        });
+    }
        
   
 
@@ -135,6 +147,7 @@ class UpdateProduct extends Component {
                 
                     {this.state.message}
                 <button className={styles.Button}  onClick={this.onSubmit} >Update product</button>
+                <button className={styles.Button}  onClick={this.onDelete}>Delete product</button>
                 </div>
            
            

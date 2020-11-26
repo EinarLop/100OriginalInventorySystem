@@ -1,4 +1,6 @@
-import Header from "./GlobalComponents/Header"
+import Header from "./GlobalComponents/Header";
+import HeaderLogin from "./GlobalComponents/HeaderLogin";
+import Login from "./Login/Login";
 import Product from "./Inventory/Components/Product";
 import SearchBar from "./GlobalComponents/SearchBar"
 import styles from  './AppStyles.module.scss';
@@ -21,15 +23,16 @@ function App() {
     <div className={styles.Wrapper}>
    
     <Router>
-        <Header color="yellow" />
+        <Header />
         {/* <SearchBar/> */}
       <Switch>
+          <Route exact path="/" component={Login}/>
           <Route exact path="/createproduct" component={CreateProduct}/>
           <Route exact path="/showproducts" component={ShowProducts}/>
           <Route exact path="/createsale" component={CreateSale}/>
           <Route exact path="/showsales" component={ShowSales}/>
           <Route exact path="/updatesale/:id" component={UpdateSale}/>
-
+          
           <Route exact path="/createsupplier" component={CreateSupplier}/>
           <Route exact path="/showsuppliers" component={ShowSuppliers}/>
           <Route exact path="/updateproduct/:id" component={UpdateProduct} />
