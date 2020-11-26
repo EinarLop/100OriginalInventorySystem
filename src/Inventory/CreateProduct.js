@@ -56,7 +56,7 @@ class CreateProduct extends Component {
     let cookieValue = this.readCookie("100Orig-Id");
 
     axios
-      .post("https://api100originalinventorysystem.herokuapp.com/product/" + "?admin=" + cookieValue, product)
+      .post("http://localhost:3010/product/" + "?admin=" + cookieValue, product)
       .then((res) => {
         let msg = (
           <p style={{ color: "green" }}>Product was succesfully registered!</p>

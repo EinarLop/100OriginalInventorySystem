@@ -26,7 +26,7 @@ class UpdateSale extends Component {
 
     componentDidMount(){
     // Get the cross-references of id_sale
-    axios.get("https://api100originalinventorysystem.herokuapp.com/productsale/" +  this.props.match.params.id)
+    axios.get("http://localhost:3010/productsale/" +  this.props.match.params.id)
     .then(response => {
         this.setState(
             {
@@ -37,7 +37,7 @@ class UpdateSale extends Component {
     })
 
     // Get sale information of id_sale
-    axios.get("https://api100originalinventorysystem.herokuapp.com/sale/" +  this.props.match.params.id)
+    axios.get("http://localhost:3010/sale/" +  this.props.match.params.id)
     .then(response => {
         this.setState( 
             {
@@ -53,7 +53,7 @@ class UpdateSale extends Component {
 
     getProducts(){
         this.state.products_sale.forEach(product => {
-        axios.get("https://api100originalinventorysystem.herokuapp.com/product/" + product.id_product)
+        axios.get("http://localhost:3010/product/" + product.id_product)
         .then(response => {
             this.setState(
                 {
@@ -67,7 +67,7 @@ class UpdateSale extends Component {
     }
 
     deleteSale(){
-        axios.delete("https://api100originalinventorysystem.herokuapp.com/sale/" + this.state.id_sale)
+        axios.delete("http://localhost:3010/sale/" + this.state.id_sale)
         .then(response => {
           let msg = <p style={{color: 'green'}}>Sale deleted succesfully!</p>;      
           

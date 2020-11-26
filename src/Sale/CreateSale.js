@@ -71,7 +71,7 @@ class CreateSale extends Component {
   let cookieValue = this.readCookie('100Orig-Id');
 
     axios
-      .post("https://api100originalinventorysystem.herokuapp.com/sale/" + "?admin=" + cookieValue)
+      .post("http://localhost:3010/sale/" + "?admin=" + cookieValue)
       .then((response) => {
         this.createCrossRef(id);
         let msg = (
@@ -101,7 +101,7 @@ class CreateSale extends Component {
       console.log(product_sale.quantity);
 
       axios
-        .post("https://api100originalinventorysystem.herokuapp.com/productsale", product_sale)
+        .post("http://localhost:3010/productsale", product_sale)
         .then((response) => {
           console.log(response.data);
         })
@@ -110,7 +110,7 @@ class CreateSale extends Component {
         });
 
       axios
-        .put("https://api100originalinventorysystem.herokuapp.com/productstock/" + product.id_product, {
+        .put("http://localhost:3010/productstock/" + product.id_product, {
           quantity: product.quantity,
         })
         .then((response) => {
@@ -137,7 +137,7 @@ class CreateSale extends Component {
     this.setState({ error_msg: err });
 
     axios
-      .get("https://api100originalinventorysystem.herokuapp.com/product/code/" + this.state.input_code)
+      .get("http://localhost:3010/product/code/" + this.state.input_code)
       .then((response) => {
         if (response.data === "No results") {
           err = <p style={{ color: "red" }}>No Product Code found.</p>;
