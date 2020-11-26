@@ -68,10 +68,10 @@ class CreateSale extends Component {
     };
     console.log(sale);
 
-  let cookieValue = this.readCookie('100Orig-Id');
+    let cookieValue = this.readCookie('100Orig-Id');
 
     axios
-      .post("http://localhost:3010/sale/" + "?admin=" + cookieValue)
+      .post("http://localhost:3010/sale/" + "?admin=" + cookieValue, sale)
       .then((response) => {
         this.createCrossRef(id);
         let msg = (
@@ -84,10 +84,12 @@ class CreateSale extends Component {
         setTimeout(() => this.setState({ redirect: true }), 2000);
       })
       .catch(error => {
-            console.log(error.response.status);
-            if (error.response.status === 401) {
-                window.location = "/";
-            }
+        console.log(error)
+        /*    
+        if (error.response.status === 401) {
+          console.log(error.response.status);
+          window.location = "/";
+        }*/
         })
   }
 
