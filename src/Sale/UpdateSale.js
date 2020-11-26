@@ -82,7 +82,6 @@ class UpdateSale extends Component {
         return (
           this.state.redirect ? <Redirect to="/showsales"/>:
           
-
           <div className={styles.Wrapper}>
             <div className={styles.Form}>
               <h1>Sale details</h1>
