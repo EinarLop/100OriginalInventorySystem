@@ -15,8 +15,7 @@ constructor(props) {
 componentDidMount(){
 
     let cookieValue = this.readCookie('100Orig-Id');
-
-    axios.get("http://localhost:3010/product/" + "?admin=" + cookieValue)
+    axios.get("https://api100originalinventorysystem.herokuapp.com/product/" + "?admin=" + cookieValue)
     .then(response => { 
         this.setState(
             {

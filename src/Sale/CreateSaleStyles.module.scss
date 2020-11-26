@@ -5,9 +5,9 @@
     @include Input;
     margin: 0px 10px;
     border: none;
-    border-radius: 0px;
-    border-bottom: 1px solid #118ab2;
-    color: #118ab2;
+    border-radius: 10px;
+   border:1px solid $background;
+    color: black;
     
 }
 
@@ -16,9 +16,12 @@
     width: 100px;
   }
 .List{
+     border-radius: 10px;
+   border:1px solid $background;
     width: 200px;
-    font-size: 20px;   
-    background-color: #118ab2;
+    font-size: 20px; 
+ height: 42px;
+    background-color: $header;
     color: white;
     border: none;
     padding: 2px;

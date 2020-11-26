@@ -26,7 +26,7 @@ class UpdateProduct extends Component {
     }
 
     componentDidMount(){
-    axios.get("http://localhost:3010/product/" +  this.props.match.params.id)
+    axios.get("https://api100originalinventorysystem.herokuapp.com/product/" +  this.props.match.params.id)
     .then(response => { 
     this.setState(
         {
@@ -70,7 +70,7 @@ class UpdateProduct extends Component {
             img_url: this.state.url,
         }
 
-           axios.put("http://localhost:3010/product/" +  this.props.match.params.id , product)
+           axios.put("https://api100originalinventorysystem.herokuapp.com/product/" +  this.props.match.params.id , product)
             .then(
                 res => {console.log(res.data)
                 let msg = <p style={{color: 'green'}}>Product updated succesfully!</p>; 
@@ -85,7 +85,7 @@ class UpdateProduct extends Component {
         }
        
     onDelete(){
-        axios.delete("http://localhost:3010/product/" + this.state.id_product)
+        axios.delete("https://api100originalinventorysystem.herokuapp.com/product/" + this.state.id_product)
         .then(response => {
           let msg = <p style={{color: 'green'}}>Product deleted succesfully!</p>;      
           
