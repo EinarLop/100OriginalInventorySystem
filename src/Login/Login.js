@@ -29,7 +29,7 @@ class Login extends Component{
             username : this.state.username,
             password: this.state.password
         }
-         axios.post("https://api100originalinventorysystem.herokuapp.com/login", user, { withCredentials: true })
+         axios.post("http://localhost:3010/login", user, { withCredentials: true }) // https://api100originalinventorysystem.herokuapp.com
            .then((res) => {
              console.log(res);
              this.setState({
@@ -38,12 +38,11 @@ class Login extends Component{
            })
            .catch((error) => {
              console.log(error);
-             if (error.response.status === 400) {
+             /*if (error.response.status === 400) {
                 let msg = <p style={{color: 'red'}}>Username / password is incorrect</p>
                 this.setState({
                     message: msg
-                })
-            }
+                })*/
            });
     }
     

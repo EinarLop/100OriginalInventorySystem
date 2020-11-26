@@ -14,7 +14,7 @@ class ShowSales extends Component {
 
     componentDidMount(){
       let cookieValue = this.readCookie('100Orig-Id');
-      axios.get("https://api100originalinventorysystem.herokuapp.com/sale/" +  "?admin=" + cookieValue)
+      axios.get("http://localhost:3010/sale/" +  "?admin=" + cookieValue)
       .then(response => { 
       if (response.data === "No results"){
           console.log("No sales in Database")
