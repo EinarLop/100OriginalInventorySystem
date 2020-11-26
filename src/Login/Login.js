@@ -29,11 +29,11 @@ class Login extends Component{
             username : this.state.username,
             password: this.state.password
         }
-         axios.post("http://localhost:3010/login", user, { withCredentials: true })
+         axios.post("https://api100originalinventorysystem.herokuapp.com/login", user, { withCredentials: true })
            .then((res) => {
              console.log(res);
              this.setState({
-                 redirect: true
+                 redirect: true,
              })
            })
            .catch((error) => {
@@ -93,6 +93,8 @@ class Login extends Component{
                         <button className={styles.Button} onClick={(e) => this.onSubmitt()}>
                             Login 
                         </button>
+                        <a href="https://drive.google.com/file/d/1xDVeLJBNIu_abjGxBLL_j7-9NY0BbZK5/view?usp=sharing
+">AVISO DE PRIVACIDAD</a>
                     </div>
             </div>
         );

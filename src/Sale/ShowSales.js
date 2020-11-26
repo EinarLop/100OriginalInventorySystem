@@ -13,21 +13,24 @@ class ShowSales extends Component {
     }
 
     componentDidMount(){
-    axios.get("http://localhost:3010/sale")
-    .then(response => { 
-    if (response.data === "No results"){
-        console.log("No sales in Database")
-        
-    }else {
-        this.setState(
-            {
-                sales: response.data
-            })
-    }
-    console.log(response.data)
-    }).catch(error => {
-        console.log("GET ERROR:" + error);
-    })
+      let cookieValue = this.readCookie('100Orig-Id');
+      axios.get("https://api100originalinventorysystem.herokuapp.com/sale/" +  "?admin=" + cookieValue)
+      .then(response => { 
+      if (response.data === "No results"){
+          console.log("No sales in Database")
+      }else {
+          this.setState(
+              {
+                  sales: response.data
+              })
+      }
+      console.log(response.data)
+      }).catch(error => {
+          console.log(error.response.status);
+            if (error.response.status === 401) {
+                window.location = "/";
+            }
+      })
     };
 
     render() { 
@@ -69,6 +72,19 @@ class ShowSales extends Component {
         );
 
     }
+
+    readCookie = (cookieName) => {
+      let len = cookieName.length
+      let cookies = document.cookie.split(';');
+      let value = null
+      for (let i = 0; i < cookies.length; i++) {
+          const c = cookies[i];
+          if (c.substring(0,len) === cookieName)
+              value = c.substring(len+1)
+              console.log(value)
+      }
+      return value;
+  }
 }
 
  
