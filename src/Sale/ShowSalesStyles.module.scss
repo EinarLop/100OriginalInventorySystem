@@ -80,3 +80,29 @@
     font-weight: 500;
 
 }
+
+
+.fakeButton{
+  border: 1px solid  #ff713a;;
+  border-radius: 10px;
+  height: 40px;
+  padding: 5px;
+  width: 165px;
+  text-align:center;
+  margin: auto 25px auto auto;
+  background-color: #ff713a;
+  
+}
+
+.divF{
+  
+  display: flex;
+  justify-content: right;
+  padding: 25px 0px 0px 0px;
+}
+.LinkCreate{
+  font-family: "Prompt", sans-serif;
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+}

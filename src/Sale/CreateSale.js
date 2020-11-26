@@ -3,6 +3,8 @@ import styles from './CreateSaleStyles.module.scss';
 import axios from 'axios'
 import {v4 as uuidv4} from 'uuid';
 import Sale from './Components/Sale';
+import { Redirect } from "react-router-dom";
+
 
 
 class CreateSale extends Component {
@@ -24,6 +26,7 @@ class CreateSale extends Component {
       input_platform: "Amazon",
       id_product:"",
       error_msg:"",
+      redirect: false,
     };
   }
 
@@ -63,10 +66,13 @@ class CreateSale extends Component {
         this.createCrossRef(id);
         let msg = <p style={{color: 'green'}}>Your sale was registered succesfully!</p>;
         this.setState({error_msg: msg});
+
+        setTimeout(() => this.setState({ redirect: true }), 2000);
       })
       .catch((error) => {
         console.log("Try again later: " + error);
       });
+      
   }
 
   createCrossRef(idSale){
@@ -76,6 +82,7 @@ class CreateSale extends Component {
         id_sale: idSale,
         quantity: product.quantity
       }
+      console.log(product_sale.quantity);
     
       axios.post("http://localhost:3010/productsale", product_sale)
       .then((response) => {        
@@ -85,14 +92,17 @@ class CreateSale extends Component {
         console.log("Try again later: " + error);
       });
 
-      // hacer el update de stock por cada id_product
+      axios.put("http://localhost:3010/productstock/" + product.id_product, {quantity: product.quantity})
+      .then(response=> {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      })
+      
 
     });
   }
 
-  updateStock(idProduct){
-
-  }
 
   addProduct(e) {
     e.preventDefault();
@@ -149,6 +159,7 @@ class CreateSale extends Component {
 
   render() {
     return (
+      this.state.redirect ? <Redirect to="/showsales"/> :
       <div className={styles.Wrapper}>
         <div className={styles.Form}>
           <h1>Create sale</h1>

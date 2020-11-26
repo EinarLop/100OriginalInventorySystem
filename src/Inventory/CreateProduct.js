@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './CreateProductStyles.module.scss';
 import axios from 'axios'
+import { Redirect } from "react-router-dom";
 
 class CreateProduct extends Component {
     constructor(props) {
@@ -16,18 +17,22 @@ class CreateProduct extends Component {
             unitCost:"",
             stock:"",
             url:"",
-            supplier:""
-
-
+            supplier:"",
+            message: "",
+            redirect: false,
          }
     }
 
     
 
      onChange(e, val) {
+        
         this.setState({
             [val]: e.target.value
         });
+        this.setState({
+            message: ''
+        })
 
     }
 
@@ -46,17 +51,25 @@ class CreateProduct extends Component {
          
 
           axios.post('http://localhost:3010/product', product)
-            .then(res => console.log(res.data));
-        
-        }
-       
-       
-  
+            .then(res => {
+                let msg = <p style={{color: 'green'}}>Product was succesfully registered!</p>
+                this.setState({
+                    message: msg
+                })
+                console.log(res.data)
 
-      
+                // A continuación redirigir a showProducts
+                setTimeout(() => this.setState({ redirect: true }), 2000);
+
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+             
   
     render() { 
         return (
+            this.state.redirect ? <Redirect to="/showproducts"/> : 
             <div className={styles.Wrapper}>
 
                 <p className={styles.Title}>Create product</p>
@@ -93,20 +106,20 @@ class CreateProduct extends Component {
                     type="text"
                     onChange={(e) => this.onChange(e, "url")}/>
 
-                <input 
-                    placeholder="Supplier" 
-                    className={styles.Input} 
-                    type="text"
-                    onChange={(e) => this.onChange(e, "supplier")}/>
+                {this.state.message}    
 
                 <button className={styles.Button}  onClick={this.onSubmit} >Create product</button>
                 </div>
-           
-           
+                             
             </div>
-            );
+        );
 
     }
 }
  
+/*                <input 
+                    placeholder="Supplier" 
+                    className={styles.Input} 
+                    type="text"
+                    onChange={(e) => this.onChange(e, "supplier")}/> */
 export default CreateProduct;
