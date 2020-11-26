@@ -3,6 +3,8 @@ import styles from './UpdateSaleStyles.module.scss';
 import SalePreview from './Components/SalePreview'
 import axios from 'axios';
 import ProductSalePreview from './Components/ProductSalePreview';
+import { Redirect } from "react-router-dom";
+
 
 class UpdateSale extends Component {
     constructor(props) {
@@ -15,6 +17,8 @@ class UpdateSale extends Component {
             products_sale: [], 
             products:[],
             id_product: "", 
+            redirect: false,
+            message: '',
         }
         this.deleteSale = this.deleteSale.bind(this);
     }
@@ -55,17 +59,30 @@ class UpdateSale extends Component {
                 {
                 products: this.state.products.concat(response.data[0]),
                 }
+                           
             )
+                       
             })
         });
     }
 
     deleteSale(){
-        axios.delete("http://localhost:3010/sale/" + this.state.id_sale).then(window.location='/showproducts');
+        axios.delete("http://localhost:3010/sale/" + this.state.id_sale)
+        .then(response => {
+          let msg = <p style={{color: 'green'}}>Sale deleted succesfully!</p>;      
+          
+          this.setState({
+                  message: msg
+                })
+                  setTimeout(() => this.setState({ redirect: true }), 2000);
+        });
     }
     
-    render() { 
+    render() {
         return (
+          this.state.redirect ? <Redirect to="/showsales"/>:
+          
+
           <div className={styles.Wrapper}>
             <div className={styles.Form}>
               <h1>Sale details</h1>
@@ -91,6 +108,7 @@ class UpdateSale extends Component {
                 />
               )) : <div>No products</div>}
               <div className={styles.buttonWrapper}>
+                {this.state.message}
                 <button className={styles.Button} onClick={this.deleteSale}>Delete</button>
               </div>
             </div>

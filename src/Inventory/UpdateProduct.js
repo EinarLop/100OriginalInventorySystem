@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './CreateProductStyles.module.scss';
 import axios from 'axios'
-
+import {Redirect} from 'react-router-dom'
 class UpdateProduct extends Component {
        constructor(props) {
         super(props);
@@ -18,14 +18,14 @@ class UpdateProduct extends Component {
             unitCost:"",
             stock:"",
             url:"",
-            supplier:""
-
-
+            supplier:"",
+            message: "",
+            redirect: false
          }
     }
 
     componentDidMount(){
-    axios.get("https://api100originalinventorysystem.herokuapp.com/product/" +  this.props.match.params.id)
+    axios.get("http://localhost:3010/product/" +  this.props.match.params.id)
     .then(response => { 
     this.setState(
         {
@@ -67,13 +67,20 @@ class UpdateProduct extends Component {
             unit_cost: this.state.unitCost,
             stock: this.state.stock,
             img_url: this.state.url,
-            id_supplier: this.state.supplier
         }
 
-           axios.put("https://api100originalinventorysystem.herokuapp.com/product/" +  this.props.match.params.id , product)
-            .then(res => console.log(res.data));
-
-            window.location='/showproducts';
+           axios.put("http://localhost:3010/product/" +  this.props.match.params.id , product)
+            .then(
+                res => {console.log(res.data)
+                let msg = <p style={{color: 'green'}}>Product updated succesfully!</p>; 
+                this.setState({
+                     message:msg
+                     
+                })
+                setTimeout(() => this.setState({ redirect: true }), 2000);
+            });
+            
+           
         }
        
        
@@ -83,6 +90,7 @@ class UpdateProduct extends Component {
   
     render() { 
         return (
+            this.state.redirect ? <Redirect to="/showproducts"/> : 
             <div className={styles.Wrapper}>
 
                 <p className={styles.Title}>Update product</p>
@@ -124,13 +132,8 @@ class UpdateProduct extends Component {
                      value={this.state.url}
                     onChange={(e) => this.onChange(e, "url")}/>
 
-                <input 
-                    placeholder="Supplier" 
-                    className={styles.Input} 
-                    type="text"
-                     value={this.state.supplier}
-                    onChange={(e) => this.onChange(e, "supplier")}/>
-
+                
+                    {this.state.message}
                 <button className={styles.Button}  onClick={this.onSubmit} >Update product</button>
                 </div>
            
@@ -142,3 +145,11 @@ class UpdateProduct extends Component {
 }
  
 export default UpdateProduct;
+/*
+<input 
+                    placeholder="Supplier" 
+                    className={styles.Input} 
+                    type="text"
+                     value={this.state.supplier}
+                    onChange={(e) => this.onChange(e, "supplier")}/>
+*/

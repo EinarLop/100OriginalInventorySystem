@@ -16,9 +16,7 @@ function Header(props) {
 
                 <div className={styles.links}>
                     <Link to="/showproducts"className={styles.Link} ><li>Inventory</li></Link>
-                    <Link to="/showoperations" className={styles.Link}><li>Operations</li></Link>
-                    <Link to="/showsales" className={styles.Link}><li>Sales</li></Link>
-                    <Link to="/showsuppliers" className={styles.Link}><li>Suppliers</li></Link>
+                    <Link to="/showsales" className={styles.Link}><li>Sales</li></Link>     
                    
 
                   

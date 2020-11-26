@@ -32,32 +32,39 @@ class ShowSales extends Component {
 
     render() { 
         return (
-          <div className={styles.Wrapper}>
-            <div className={styles.Form}>
-              <h1> Show sales</h1>
-            </div>
-         
+          <div>
+            <div className={styles.divF}>
+                      <div className={styles.fakeButton}>
+                              <Link to='/createsale' className={styles.LinkCreate}>Register Sale</Link>
+                      </div>
+                  </div>
+            <div className={styles.Wrapper}>
+              <div className={styles.Form}>
+                <h1> Show sales</h1>
+              </div>
+          
 
-            <div className={styles.Menu}>
-              <div className={styles.Container}>Date</div>
-              <div className={styles.Container}>Total</div>
-              <div className={styles.Container}>Platform</div>
-              <div className={styles.Container}></div>
+              <div className={styles.Menu}>
+                <div className={styles.Container}>Date</div>
+                <div className={styles.Container}>Total</div>
+                <div className={styles.Container}>Platform</div>
+                <div className={styles.Container}></div>
+              </div>
+              {
+              this.state.sales.length ? (this.state.sales.map((sale, counter) => (
+                  <div key={counter}>
+                    <SalePreview
+                      date={sale.date}
+                      quantity={sale.quantity}
+                      total={sale.total}
+                      id_platform={sale.id_platform}
+                      id={sale.id_sale}
+                    />
+                  </div>
+                ))) : <div>No sales</div>
+      }
+              
             </div>
-            {
-            this.state.sales.length ? (this.state.sales.map((sale, counter) => (
-                <div key={counter}>
-                  <SalePreview
-                    date={sale.date}
-                    quantity={sale.quantity}
-                    total={sale.total}
-                    id_platform={sale.id_platform}
-                    id={sale.id_sale}
-                  />
-                </div>
-              ))) : <div>No sales</div>
-    }
-            
           </div>
         );
 
